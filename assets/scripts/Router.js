@@ -66,7 +66,6 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
-
     if(this[page] == undefined) return;
 
     // Reference: https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API
