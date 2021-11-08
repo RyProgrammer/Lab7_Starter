@@ -38,6 +38,7 @@ export class Router {
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
+    this[page] = pageFunc;
   }
 
   /**
@@ -65,5 +66,15 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
+
+    if(this[page] == undefined) return;
+
+    // Reference: https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API
+    var hash = (page == 'home') ? '' : '#' + page;
+    var currentState = history.state;
+
+    if(!statePopped && window.location.hash != hash) history.pushState(currentState, '', origin + hash);
+
+    this[page]();
   }
 }
